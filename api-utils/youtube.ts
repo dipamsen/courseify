@@ -2,14 +2,16 @@ import { YouTube } from "./youtubeTypes";
 import dotenv from "dotenv";
 dotenv.config();
 
-const playlistId = process.env.PLAYLIST_ID;
 const browserKey = process.env.API_KEY;
-console.log(playlistId, browserKey);
 
-async function getAllVideos() {
-  let res: YouTube.Playlist.Response = await request(
-    `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet%2CcontentDetails&playlistId=${playlistId}&maxResults=50&key=${browserKey}`
-  );
+export async function getAllVideos(playlistId: string) {
+  let res: YouTube.Playlist.Response | { error: { message: string } } =
+    await request(
+      `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet%2CcontentDetails&playlistId=${playlistId}&maxResults=50&key=${browserKey}`
+    );
+  if ("error" in res) {
+    throw new Error(res.error.message);
+  }
   // pagination
   while (res.nextPageToken) {
     let oldRes = res;
@@ -21,14 +23,7 @@ async function getAllVideos() {
   return res.items;
 }
 
-async function main() {
-  const videos = await getAllVideos();
-}
-main();
-
 async function request(url: string) {
   const res = await fetch(url);
   return res.json();
 }
-
-export {};

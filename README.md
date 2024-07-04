@@ -6,17 +6,23 @@ Ability to create and manage courses, based on YouTube videos.
 
 - Course
 
-  - name: string
-  - id: string
+  - title: string
+  - description: string
   - chapters: Chapter[]
+
+- Chapter
+
+  - title: string
+  - resources: Resource[]
 
 - Resource = VideoResource | FileResource
 
 - VideoResource
 
-  - name: string
+  - title: string
   - videoId: string
 
 - FileResource
-  - name: string
+
+  - title: string
   - driveId: string

@@ -2,9 +2,6 @@ import React, { useEffect } from "react";
 import {
   Container,
   Typography,
-  Card,
-  CardContent,
-  CardActions,
   Button,
   AppBar,
   IconButton,
@@ -17,11 +14,10 @@ import {
   TableBody,
   TableCell,
   TableContainer,
-  TableHead,
   TableRow,
 } from "@mui/material";
-import { useParams, Link } from "react-router-dom";
-import { collection, getDoc, doc } from "firebase/firestore";
+import { useParams } from "react-router-dom";
+import { getDoc, doc } from "firebase/firestore";
 import { WithID, Course } from "../utils/classes";
 import { db } from "../utils/FirebaseConfig";
 import BookIcon from "@mui/icons-material/Book";
@@ -31,7 +27,7 @@ export default function ViewCourse() {
   const [course, setCourse] = React.useState<WithID<Course>>();
   const [error, setError] = React.useState<boolean>(false);
   const { courseId } = useParams<{ courseId: string }>();
-  const coursesRef = collection(db, "courses").withConverter(Course);
+  // const coursesRef = collection(db, "courses").withConverter(Course);
 
   useEffect(() => {
     async function getCourseData() {
