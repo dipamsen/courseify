@@ -2,6 +2,11 @@
 
 Ability to create and manage courses, based on YouTube videos.
 
+## Tech Stack
+
+- Frontend: React (TypeScript) + Material UI + React Router
+- Backend: Vercel Serverless Functions (Node.js) + Firebase Firestore
+
 ## Database Structures
 
 - Course
