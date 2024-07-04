@@ -1,5 +1,12 @@
 import React, { useEffect } from "react";
-import { Button, Card, CardActions, CardContent, Container, Typography } from "@mui/material";
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  Container,
+  Typography,
+} from "@mui/material";
 import { Link } from "react-router-dom";
 import { collection, getDocs, doc } from "firebase/firestore";
 import { db } from "../utils/FirebaseConfig";
@@ -9,13 +16,13 @@ export default function Home() {
   const [courses, setCourses] = React.useState<WithID<Course>[]>([]);
   const coursesRef = collection(db, "courses").withConverter(Course);
 
-  useEffect(() => {
-    async function getCourseData() {
-      const snap = await getDocs(coursesRef);
-      setCourses(snap.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    }
-    getCourseData();
-  }, []);
+  // useEffect(() => {
+  //   async function getCourseData() {
+  //     const snap = await getDocs(coursesRef);
+  //     setCourses(snap.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  //   }
+  //   getCourseData();
+  // }, []);
 
   return (
     <Container maxWidth="sm">
