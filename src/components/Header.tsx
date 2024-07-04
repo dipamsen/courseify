@@ -12,6 +12,8 @@ function Header() {
           color="inherit"
           aria-label="menu"
           sx={{ mr: 2 }}
+          LinkComponent={Link}
+          href="/"
         >
           <BookIcon />
         </IconButton>
