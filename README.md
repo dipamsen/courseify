@@ -1,22 +1,22 @@
-# YT Course Viewer App
+# Courseify
+
+Ability to create and manage courses, based on YouTube videos.
 
 ## Database Structures
 
-* Course
-  * name: string
-  * id: string
-  * chapters: Chapter[]
+- Course
 
-* Resource = VideoResource | FileResource
+  - name: string
+  - id: string
+  - chapters: Chapter[]
 
-* VideoResource
-  * name: string
-  * videoId: string
+- Resource = VideoResource | FileResource
 
-* FileResource
-  * name: string
-  * driveId: string
+- VideoResource
 
-## Course Ideas
-- Sanskrit Class 6
-- Chemistry by Alakh Pandey
+  - name: string
+  - videoId: string
+
+- FileResource
+  - name: string
+  - driveId: string
