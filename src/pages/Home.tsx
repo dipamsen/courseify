@@ -1,11 +1,19 @@
 import React, { useEffect } from "react";
-import { Container, Typography } from "@mui/material";
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  Container,
+  Typography,
+} from "@mui/material";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../utils/FirebaseConfig";
 import { Course, WithID } from "../utils/classes";
+import { Link } from "react-router-dom";
 
 export default function Home() {
-  const [_courses, setCourses] = React.useState<WithID<Course>[]>([]);
+  const [courses, setCourses] = React.useState<WithID<Course>[]>([]);
   const coursesRef = collection(db, "courses").withConverter(Course);
 
   useEffect(() => {
@@ -18,7 +26,7 @@ export default function Home() {
 
   return (
     <Container maxWidth="sm">
-      {/* <Typography variant="h4">Courses</Typography>
+      <Typography variant="h4">Courses</Typography>
       {courses.length > 0 ? (
         courses.map((course) => (
           <Card key={course.id}>
@@ -33,9 +41,9 @@ export default function Home() {
             </CardActions>
           </Card>
         ))
-      ) : ( */}
-      <Typography variant="body1">No courses available.</Typography>
-      {/* )} */}
+      ) : (
+        <Typography variant="body1">No courses available.</Typography>
+      )}
     </Container>
   );
 }
