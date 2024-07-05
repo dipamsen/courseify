@@ -1,10 +1,15 @@
 import { VercelRequest, VercelResponse } from "@vercel/node";
 import { addDoc, collection } from "firebase/firestore";
-import { db } from "./utils/_firebaseConfig.ts";
-import { getAllVideos } from "./utils/_youtube.ts";
-import { allowCors } from "./utils/_cors.ts";
+import { db } from "./utils/_firebaseConfig.js";
+import { getAllVideos } from "./utils/_youtube.js";
 
-async function handler(request: VercelRequest, response: VercelResponse) {
+export default async function handler(
+  request: VercelRequest,
+  response: VercelResponse
+) {
+  if (request.method === "OPTIONS") {
+    return response.status(200).end();
+  }
   if (request.method !== "POST") {
     return response.status(405).send({
       error: "Method not allowed",
@@ -64,5 +69,3 @@ async function handler(request: VercelRequest, response: VercelResponse) {
     success: true,
   });
 }
-
-export default allowCors(handler);
