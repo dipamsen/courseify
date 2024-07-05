@@ -25,6 +25,7 @@ export default function CreateCourse() {
     setTitle("");
     setDescription("");
     setPlaylistId("");
+    setStatus("success");
   };
   return (
     <Container maxWidth="sm">
@@ -63,7 +64,12 @@ export default function CreateCourse() {
           fullWidth
           required
         />
-        <Button type="submit" variant="contained" color="primary">
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          disabled={status !== "unfilled"}
+        >
           Submit
         </Button>
       </form>

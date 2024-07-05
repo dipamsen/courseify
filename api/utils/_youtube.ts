@@ -1,4 +1,4 @@
-import { YouTube } from "./youtubeTypes";
+import { YouTube } from "./_youtubeTypes";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -15,10 +15,10 @@ export async function getAllVideos(playlistId: string) {
   // pagination
   while (res.nextPageToken) {
     let oldRes = res;
-    res = await request(
+    let newRes = await request(
       `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet%2CcontentDetails&playlistId=${playlistId}&maxResults=50&pageToken=${oldRes.nextPageToken}&key=${browserKey}`
     );
-    return [...oldRes.items, ...res.items];
+    res.items = [...oldRes.items, ...newRes.items];
   }
   return res.items;
 }
